@@ -85,19 +85,22 @@ public class Solution {
         return sum;
     }
 
+    public int subtractProductAndSum(int n) {
+        int product = 1;
+        int sum = 0;
+        var nLength = String.valueOf(n).length();
+        for (int i = 1; i <= nLength; i++) {
+            var digit = n % 10;
+            product *= digit;
+            sum += digit;
+            n /= 10;
+        }
+        return product - sum;
+    }
+
     public static void main(String[] args) {
         var solution = new Solution();
-        var n1 = new TreeNode(1);
-        var n3 = new TreeNode(3, n1, null);
-        var n6 = new TreeNode(6);
-        var n7 = new TreeNode(7, n6, null);
-        var n5 = new TreeNode(5, n3, n7);
-        var n18 = new TreeNode(18);
-        var n13 = new TreeNode(13);
-        var n15 = new TreeNode(15, n13, n18);
-        var n10 = new TreeNode(10, n5, n15);
-
-        System.out.println(solution.rangeSumBST(n10, 6, 10));
+        System.out.println(solution.subtractProductAndSum(4421));
     }
 
     //Definition for a binary tree node.
