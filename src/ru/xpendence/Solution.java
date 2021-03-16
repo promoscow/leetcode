@@ -98,9 +98,19 @@ public class Solution {
         return product - sum;
     }
 
+    public int[] shuffle(int[] nums, int n) {
+        int[] result = new int[nums.length];
+        var j = 0;
+        for (int i = 0; i < nums.length / 2; i++) {
+            result[j++] = nums[i];
+            result[j++] = nums[n + i];
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         var solution = new Solution();
-        System.out.println(solution.subtractProductAndSum(4421));
+        System.out.println(Arrays.toString(solution.shuffle(new int[]{1, 1, 2, 2}, 2)));
     }
 
     //Definition for a binary tree node.
