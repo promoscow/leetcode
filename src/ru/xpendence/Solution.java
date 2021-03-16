@@ -65,6 +65,20 @@ public class Solution {
                 .count();
     }
 
+    public int maxDepth(TreeNode root) {
+        return getNextNodeStep(root, 0);
+    }
+
+    private int getNextNodeStep(TreeNode node, int depth) {
+        if (node != null) {
+            depth++;
+            var leftNodeDepth = getNextNodeStep(node.left, depth);
+            var rightNodeDepth = getNextNodeStep(node.right, depth);
+            depth = leftNodeDepth > rightNodeDepth ? leftNodeDepth : rightNodeDepth;
+        }
+        return depth;
+    }
+
     public int rangeSumBST(TreeNode root, int low, int high) {
         return processNode(root, low, high);
     }
@@ -110,7 +124,13 @@ public class Solution {
 
     public static void main(String[] args) {
         var solution = new Solution();
-        System.out.println(Arrays.toString(solution.shuffle(new int[]{1, 1, 2, 2}, 2)));
+        var n16 = new TreeNode(16);
+        var n15 = new TreeNode(15, n16, null);
+        var n7 = new TreeNode(7);
+        var n20 = new TreeNode(20, n15, n7);
+        var n9 = new TreeNode(9);
+        var n3 = new TreeNode(3, n9, n20);
+        System.out.println(solution.maxDepth(n3));
     }
 
     //Definition for a binary tree node.
